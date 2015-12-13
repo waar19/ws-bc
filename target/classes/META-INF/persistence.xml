@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.bigchange_BCServices_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.bigchange.bcservices.model.Usertypes</class>
+    <class>com.bigchange.bcservices.model.Countries</class>
+    <class>com.bigchange.bcservices.model.Departments</class>
+    <class>com.bigchange.bcservices.model.Quotes</class>
+    <class>com.bigchange.bcservices.model.Cities</class>
+    <class>com.bigchange.bcservices.model.Documenttypes</class>
+    <class>com.bigchange.bcservices.model.Neighborhoods</class>
+    <class>com.bigchange.bcservices.model.Customertypes</class>
+    <class>com.bigchange.bcservices.model.Users</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://31.170.166.57:3306/u766416499_users?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="u766416499_root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="b1gCh4ng32015"/>
+    </properties>
+  </persistence-unit>
+</persistence>
