@@ -6,6 +6,7 @@ com/bigchange/bcservices/model/Neighborhoods_.class
 com/bigchange/bcservices/dto/GetUserByCodeRequestDTO.class
 com/bigchange/bcservices/model/Countries.class
 com/bigchange/bcservices/model/Departments_.class
+com/bigchange/bcservices/process/CountryProcess.class
 com/bigchange/bcservices/model/Documenttypes.class
 com/bigchange/bcservices/model/Usertypes_.class
 com/bigchange/bcservices/process/UserProcess.class
@@ -14,12 +15,16 @@ com/bigchange/bcservices/BCUsersServices.class
 com/bigchange/bcservices/dto/UpdateUserDTO.class
 com/bigchange/bcservices/model/Usertypes.class
 com/bigchange/bcservices/model/Users.class
+com/bigchange/bcservices/BCUsersRestFullServices.class
 com/bigchange/bcservices/model/Cities_.class
 com/bigchange/bcservices/model/Countries_.class
 com/bigchange/bcservices/model/Users_.class
+org/netbeans/rest/application/config/ApplicationConfig.class
 com/bigchange/bcservices/model/Customertypes.class
 com/bigchange/bcservices/model/Departments.class
 com/bigchange/bcservices/util/test.class
 com/bigchange/bcservices/model/Quotes.class
+com/bigchange/bcservices/BCCountriesServices.class
+com/bigchange/bcservices/dto/CreateUserDTO.class
 com/bigchange/bcservices/model/Quotes_.class
 com/bigchange/bcservices/model/Customertypes_.class
