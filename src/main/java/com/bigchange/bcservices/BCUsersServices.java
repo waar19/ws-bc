@@ -5,6 +5,7 @@
  */
 package com.bigchange.bcservices;
 
+import com.bigchange.bcservices.dto.CreateUserDTO;
 import com.bigchange.bcservices.dto.GetUserByCodeRequestDTO;
 import com.bigchange.bcservices.dto.GenericResponseDTO;
 import com.bigchange.bcservices.dto.UpdateUserDTO;
@@ -53,20 +54,20 @@ public class BCUsersServices {
     @WebMethod(operationName = "getAllUsers")
     public GenericResponseDTO getAllUsers() {
         //TODO write your implementation code here:
-        GenericResponseDTO getUserByCodeResponseDTO = null;
+        GenericResponseDTO getAllUserResponseDTO = null;
         UserProcess userProcess = new UserProcess();
 
         try {
-            getUserByCodeResponseDTO = userProcess.getAllUsers();
+            getAllUserResponseDTO = userProcess.getAllUsers();
         } catch (Exception ex) {
-            getUserByCodeResponseDTO = new GenericResponseDTO();
-            getUserByCodeResponseDTO.setCode("3");
-            getUserByCodeResponseDTO.setData(ex.getMessage());
-            getUserByCodeResponseDTO.setMessage("BAD");
+            getAllUserResponseDTO = new GenericResponseDTO();
+            getAllUserResponseDTO.setCode("3");
+            getAllUserResponseDTO.setData(ex.getMessage());
+            getAllUserResponseDTO.setMessage("BAD");
         } finally {
 
         }
-        return getUserByCodeResponseDTO;
+        return getAllUserResponseDTO;
     }
 
     /**
@@ -77,24 +78,44 @@ public class BCUsersServices {
     @WebMethod(operationName = "updateUser")
     public GenericResponseDTO updateUser(@WebParam(name = "dto") UpdateUserDTO dto) {
          //TODO write your implementation code here:
-        GenericResponseDTO getUserByCodeResponseDTO = null;
+        GenericResponseDTO updateUserResponseDTO = null;
         UserProcess userProcess = new UserProcess();
 
         try {
-            getUserByCodeResponseDTO = userProcess.getAllUsers();
+            updateUserResponseDTO = userProcess.updateUser(dto);
         } catch (Exception ex) {
-            getUserByCodeResponseDTO = new GenericResponseDTO();
-            getUserByCodeResponseDTO.setCode("3");
-            getUserByCodeResponseDTO.setData(ex.getMessage());
-            getUserByCodeResponseDTO.setMessage("BAD");
+            updateUserResponseDTO = new GenericResponseDTO();
+            updateUserResponseDTO.setCode("3");
+            updateUserResponseDTO.setData(ex.getMessage());
+            updateUserResponseDTO.setMessage("BAD");
         } finally {
 
         }
-        return getUserByCodeResponseDTO;
+        return updateUserResponseDTO;
     }
 
-    
-    
-    
+    /**
+     * Web service operation
+     * @param dto
+     * @return 
+     */
+    @WebMethod(operationName = "createUser")
+    public GenericResponseDTO createUser(@WebParam(name = "dto") CreateUserDTO dto) {
+        //TODO write your implementation code here:
+        GenericResponseDTO createUserResponseDTO = null;
+        UserProcess userProcess = new UserProcess();
+
+        try {
+            createUserResponseDTO = userProcess.createUser(dto);
+        } catch (Exception ex) {
+            createUserResponseDTO = new GenericResponseDTO();
+            createUserResponseDTO.setCode("3");
+            createUserResponseDTO.setData(ex.getMessage());
+            createUserResponseDTO.setMessage("BAD");
+        } finally {
+
+        }
+        return createUserResponseDTO;
+    }
     
 }

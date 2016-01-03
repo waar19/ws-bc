@@ -5,6 +5,7 @@
  */
 package com.bigchange.bcservices.model;
 
+import com.bigchange.bcservices.dto.CreateUserDTO;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -94,6 +95,25 @@ public class Users implements Serializable {
 
     public Users(Integer id) {
         this.id = id;
+    }
+    
+    public Users(CreateUserDTO dto){
+    
+        this.id = Integer.parseInt(dto.getId());
+        this.active = Boolean.valueOf(dto.getActive());
+        this.address = dto.getAddress();
+        this.cellphone = dto.getCellphone();
+        this.code = dto.getCode();
+        this.customerType = Integer.parseInt(dto.getCustomerType());
+        this.documentType = Integer.parseInt(dto.getDocumentType());
+        this.email = dto.getEmail();
+        this.lastname = dto.getLastname();
+        this.name = dto.getName();
+        this.neighborhood = Integer.parseInt(dto.getNeighborhood());
+        this.password = dto.getPassword();
+        this.phone = dto.getPhone();
+        this.quota = Integer.parseInt(dto.getQuota());
+        this.userType = Integer.parseInt(dto.getUserType());
     }
 
     public Integer getId() {

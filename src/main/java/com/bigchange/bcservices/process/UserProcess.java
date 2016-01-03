@@ -5,6 +5,7 @@
  */
 package com.bigchange.bcservices.process;
 
+import com.bigchange.bcservices.dto.CreateUserDTO;
 import com.bigchange.bcservices.dto.GenericResponseDTO;
 import com.bigchange.bcservices.dto.GetUserByCodeRequestDTO;
 import com.bigchange.bcservices.dto.UpdateUserDTO;
@@ -114,7 +115,98 @@ public class UserProcess {
 
     public GenericResponseDTO updateUser(UpdateUserDTO dto) {
 
-        return null;
+        response = new GenericResponseDTO();
+        persistence = new Persistence();
+        mapper = new ObjectMapper();
+
+        try {
+
+            try {
+                persistence.setQuery(persistence.getEmf().createEntityManager().createNamedQuery("Users.findById"));
+                persistence.getQuery().setParameter("id", dto.getId());
+                user = (Users) persistence.getQuery().getSingleResult();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                response.setData(mapper.writeValueAsString(ex));
+            }
+
+            if (user != null) {
+
+                persistence.getEmf().createEntityManager().getTransaction().begin();
+                user.setId(Integer.parseInt(dto.getId()));
+                user.setActive(Boolean.valueOf(dto.getActive()));
+                user.setAddress(dto.getAddress());
+                user.setCellphone(dto.getCellphone());
+                user.setCode(dto.getCode());
+                user.setCustomerType(Integer.parseInt(dto.getCustomerType()));
+                user.setDocumentType(Integer.parseInt(dto.getDocumentType()));
+                user.setEmail(dto.getEmail());
+                user.setLastname(dto.getLastname());
+                user.setName(dto.getName());
+                user.setNeighborhood(Integer.parseInt(dto.getNeighborhood()));
+                user.setPhone(dto.getPhone());
+                user.setQuota(Integer.parseInt(dto.getQuota()));
+                user.setUserType(Integer.parseInt(dto.getUserType()));
+                persistence.getEmf().createEntityManager().getTransaction().commit();
+
+                response.setCode("1");
+                response.setData(mapper.writeValueAsString(user));
+                response.setMessage("OK");
+            } else {
+                response.setCode("0");
+                response.setMessage("NO RESULT");
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            try {
+                response.setCode("2");
+                response.setData(mapper.writeValueAsString(ex));
+                response.setMessage("BAD");
+            } catch (IOException ex1) {
+                Logger.getLogger(UserProcess.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            persistence = null;
+            mapper = null;
+            user = null;
+            System.gc();
+        }
+        return response;
+    }
+
+    public GenericResponseDTO createUser(CreateUserDTO dto) {
+
+        response = new GenericResponseDTO();
+        persistence = new Persistence();
+        mapper = new ObjectMapper();
+        user = new Users(dto);
+
+        try {
+            persistence.getEmf().createEntityManager().getTransaction().begin();
+            persistence.getEmf().createEntityManager().persist(user);
+            persistence.getEmf().createEntityManager().getTransaction().commit();
+
+            response.setCode("1");
+            response.setData(mapper.writeValueAsString(user));
+            response.setMessage("OK");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            try {
+                response.setCode("2");
+                response.setData(mapper.writeValueAsString(ex));
+                response.setMessage("BAD");
+            } catch (IOException ex1) {
+                Logger.getLogger(UserProcess.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            persistence = null;
+            mapper = null;
+            user = null;
+            System.gc();
+        }
+        return response;
     }
 
 }
